@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ZadanieFinal</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loginName">Login Name</string>
+    <string name="personIcon">personIcon</string>
+    <string name="loginPassword">Password</string>
+    <string name="lock">lock</string>
+    <string name="login">Login</string>
+    <string name="registerQuestion">Do not have account? Register</string>
+    <string name="RegisterName">Register name</string>
+    <string name="password">Password</string>
+    <string name="passwordRepeat">Password Repeat</string>
+    <string name="loginQuestion">Do you have account? Login</string>
+    <string name="register">Register</string>
+    <string name="pubNameView">pubName</string>
+    <string name="pubTypeView">pubType</string>
+    <string name="buttonText">Show on map</string>
+    <string name="sortMenuByName">sortName</string>
+    <string name="logout">LogOut</string>
+    <string name="website">website</string>
+    <string name="pubCount">count</string>
+    <string name="sortMenuByPeople">sort by people</string>
+    <string name="sortMenuByDistance">Distance sort</string>
+</resources>

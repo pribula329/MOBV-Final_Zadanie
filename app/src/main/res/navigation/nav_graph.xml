@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="luky.zadanie.zadaniefinal.fragment.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_pubListFragment"
+            app:destination="@id/pubListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="luky.zadanie.zadaniefinal.fragment.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_pubListFragment"
+            app:destination="@id/pubListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pubListFragment"
+        android:name="luky.zadanie.zadaniefinal.fragment.PubListFragment"
+        android:label="Pub"
+        tools:layout="@layout/fragment_pub_list" >
+        <action
+            android:id="@+id/action_pubListFragment_to_pubDetailFragment"
+            app:destination="@id/pubDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pubDetailFragment"
+        android:name="luky.zadanie.zadaniefinal.fragment.PubDetailFragment"
+        android:label="Pub Detail"
+        tools:layout="@layout/fragment_pub_detail">
+        <argument
+            android:name="pubIdDetail"
+            app:argType="string" />
+        <argument
+            android:name="pubNameDetail"
+            app:argType="string" />
+        <argument
+            android:name="pubTypeDetail"
+            app:argType="string" />
+        <argument
+            android:name="latDetail"
+            app:argType="float" />
+        <argument
+            android:name="lonDetail"
+            app:argType="float" />
+        <argument
+            android:name="userCountDetail"
+            app:argType="integer" />
+    </fragment>
+</navigation>

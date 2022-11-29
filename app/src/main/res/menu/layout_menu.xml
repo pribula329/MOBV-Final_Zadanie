@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/actionSortMenuByDistance"
+        android:title="@string/sortMenuByDistance"
+        android:icon="@drawable/baseline_directions_walk_24"
+        app:showAsAction="always" />
+    <item android:id="@+id/actionSortMenuByPeople"
+        android:title="@string/sortMenuByPeople"
+        android:icon="@drawable/baseline_groups_24"
+        app:showAsAction="always" />
+    <item android:id="@+id/actionSortMenuByName"
+        android:title="@string/sortMenuByName"
+        android:icon="@drawable/baseline_sort_by_alpha_24"
+        app:showAsAction="always" />
+    <item android:id="@+id/actionLogOut"
+        android:title="@string/logout"
+        android:icon="@drawable/baseline_logout_24"
+        app:showAsAction="always" />
+
+
+</menu>
