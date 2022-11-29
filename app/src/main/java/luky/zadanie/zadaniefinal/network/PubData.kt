@@ -12,9 +12,9 @@ data class PubListData(
     @SerializedName("lat")
     val lat: Double,
     @SerializedName("lon")
-    var lon: Double,
+    val lon: Double,
     @SerializedName("users")
-    var usersCount: Int
+    val usersCount: Int
 )
 
 
@@ -33,3 +33,24 @@ data class PubDetailResponse(
     val elements: List<PubDetailData>
 )
 
+data class PubNearData(
+    val id: String,
+    @SerializedName("lat")
+    val lat: Double,
+    @SerializedName("lon")
+    val lon: Double,
+    @SerializedName("tags")
+    val tagsNear: TagsNear
+)
+
+data class TagsNear(
+    @SerializedName("amenity")
+    val pubNearType: String,
+    @SerializedName("name")
+    val pubNearName: String
+
+)
+
+data class PubNearResponse(
+    val elements: List<PubNearData>
+)

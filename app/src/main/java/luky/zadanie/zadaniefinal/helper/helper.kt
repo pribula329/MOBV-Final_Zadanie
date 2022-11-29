@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Location
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
@@ -36,5 +37,20 @@ fun logOut(view: View, context: Context?){
     Navigation.findNavController(view).navigate(R.id.loginFragment)
 }
 
+fun distanceToNearPub(myLat: Double, myLon: Double, nearLat: Double, nearLon: Double): Double{
+    return Location("").apply {
+        latitude=nearLat
+        longitude=nearLon
+    }.distanceTo(Location("").apply {
+        latitude=myLat
+        longitude=myLon
+    }).toDouble()
+}
 
+fun setName(name: String?): String{
+    if (name!=null){
+        return name
+    }
+    else return ""
+}
 

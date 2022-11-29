@@ -1,6 +1,7 @@
 package luky.zadanie.zadaniefinal.network
 
 import android.content.Context
+import luky.zadanie.zadaniefinal.database.PubNear
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
@@ -25,6 +26,10 @@ interface ApiService {
 
     @GET("https://overpass-api.de/api/interpreter?")
     suspend fun pubDetailService(@Query("data") data: String): Response<PubDetailResponse>
+
+    @GET("https://overpass-api.de/api/interpreter?")
+    suspend fun pubNearService(@Query("data") data: String): Response<PubNearResponse>
+
 
     companion object{
         const val BASE_URL = "https://zadanie.mpage.sk/"

@@ -5,7 +5,10 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.asLiveData
 import luky.zadanie.zadaniefinal.database.Pub
 import luky.zadanie.zadaniefinal.database.PubDetail
+import luky.zadanie.zadaniefinal.database.PubNear
 import luky.zadanie.zadaniefinal.database.PubRoomDatabase
+import luky.zadanie.zadaniefinal.helper.distanceToNearPub
+import luky.zadanie.zadaniefinal.helper.setName
 import luky.zadanie.zadaniefinal.network.ApiService
 import luky.zadanie.zadaniefinal.network.PubDetailData
 import luky.zadanie.zadaniefinal.network.UserRequestData
@@ -154,6 +157,53 @@ class Repository private constructor(
         }
     }
 
+
+    suspend fun apiPubNearRepository(
+        myLat: Double,
+        myLon: Double,
+        onError: (error: String) -> Unit
+    ){
+        pubRoomDatabase.pubDao().deletePubNearDao()
+        try {
+            val response =
+                apiService.pubNearService("[out:json];node(around:250,$myLat,$myLon);(node(around:250)[\"amenity\"~\"^pub$|^bar$|^restaurant$|^cafe$|^fast_food$|^stripclub$|^nightclub$\"];);out body;>;out skel;")
+            if (response.isSuccessful) {
+                response.body()?.let { nearPubs ->
+                    var nearPubsList: List<PubNear> = nearPubs.elements.map {
+                        PubNear(
+                            it.id,
+                            it.lat,
+                            it.lon,
+                            it.tagsNear.pubNearType,
+                            setName(it.tagsNear.pubNearName),
+                            distanceToNearPub(myLat, myLon,it.lat,it.lon)
+                        )
+                    }
+
+
+                    nearPubsList = nearPubsList.filter { it.nearName.isNotBlank() }.sortedBy { it.distance }
+                    pubRoomDatabase.pubDao().insertPubNearDao(nearPubsList)
+                }
+
+
+
+            }
+            else{
+                onError("Failed to load more pub")
+            }
+        }
+        catch (ex: IOException){
+            ex.printStackTrace()
+            onError("Failed to load more pub, try it again or check internet connection")
+        }
+
+    }
+
+    fun getNearPubRepository(): LiveData<List<PubNear>> {
+        return Transformations.map(pubRoomDatabase.pubDao().getAllNearPubs().asLiveData()) {
+            it
+        }
+    }
 
 
     private fun hashUserData(password: String): String {

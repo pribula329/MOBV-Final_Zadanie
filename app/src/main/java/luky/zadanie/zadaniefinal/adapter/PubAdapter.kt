@@ -26,7 +26,7 @@ class PubAdapter (private val dataset: List<Pub>): RecyclerView.Adapter<PubAdapt
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PubViewHolder {
         // create a new view
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.pub_list, parent, false)
+            .inflate(R.layout.pub_item, parent, false)
 
         return PubViewHolder(adapterLayout)
     }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -15,7 +16,6 @@ import luky.zadanie.zadaniefinal.adapter.PubAdapter
 import luky.zadanie.zadaniefinal.database.Pub
 import luky.zadanie.zadaniefinal.database.PubRoomDatabase
 import luky.zadanie.zadaniefinal.databinding.FragmentPubListBinding
-import luky.zadanie.zadaniefinal.helper.checkPermissions
 import luky.zadanie.zadaniefinal.helper.logOut
 import luky.zadanie.zadaniefinal.network.ApiService
 import luky.zadanie.zadaniefinal.viewmodel.PubViewModel
@@ -83,6 +83,11 @@ class PubListFragment : Fragment() {
                 recyclerView.adapter = PubAdapter(it)
             }
             binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
+        }
+
+        binding.floatingActionButton.setOnClickListener{
+            val action = PubListFragmentDirections.actionPubListFragmentToNearPubListFragment()
+            view.findNavController().navigate(action)
         }
 
 

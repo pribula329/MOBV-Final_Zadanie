@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_pubListFragment_to_pubDetailFragment"
             app:destination="@id/pubDetailFragment" />
+        <action
+            android:id="@+id/action_pubListFragment_to_nearPubListFragment"
+            app:destination="@id/nearPubListFragment" />
     </fragment>
     <fragment
         android:id="@+id/pubDetailFragment"
@@ -62,4 +65,9 @@
             android:name="userCountDetail"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/nearPubListFragment"
+        android:name="luky.zadanie.zadaniefinal.fragment.NearPubListFragment"
+        android:label="Near pubs"
+        tools:layout="@layout/fragment_near_pub_list" />
 </navigation>

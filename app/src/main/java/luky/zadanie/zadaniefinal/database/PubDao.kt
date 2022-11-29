@@ -21,6 +21,7 @@ interface PubDao {
     @Query("SELECT * from pub;")
     fun getAllPubs(): Flow<List<Pub>>
 
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPubDetailDao(pubDetail: PubDetail)
 
@@ -29,4 +30,14 @@ interface PubDao {
 
     @Query("SELECT * from detail;")
     fun getDetailPub(): Flow<PubDetail>
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPubNearDao(pubNear: List<PubNear>)
+
+    @Query("DELETE FROM near_pub;")
+    suspend fun deletePubNearDao()
+
+    @Query("SELECT * from near_pub;")
+    fun getAllNearPubs(): Flow<List<PubNear>>
 }
