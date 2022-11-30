@@ -54,3 +54,11 @@ data class TagsNear(
 data class PubNearResponse(
     val elements: List<PubNearData>
 )
+
+data class nearPubMessageData(
+    val id: String,
+    val name: String,
+    val type: String,
+    val lat: Double,
+    val lon: Double
+)

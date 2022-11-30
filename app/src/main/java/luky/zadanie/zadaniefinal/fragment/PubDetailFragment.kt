@@ -93,7 +93,7 @@ class PubDetailFragment : Fragment() {
 
 
         binding.showButton.setOnClickListener {
-            val gmmIntentUri = Uri.parse("geo:${args.latDetail},${args.lonDetail}")
+            val gmmIntentUri = Uri.parse("geo:${args.latDetail},${args.lonDetail}?q=${args.latDetail},${args.lonDetail}(${args.pubNameDetail})")
             // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             // Make the Intent explicit by setting the Google Maps package

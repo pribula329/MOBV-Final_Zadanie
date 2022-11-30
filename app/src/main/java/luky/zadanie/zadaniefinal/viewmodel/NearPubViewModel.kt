@@ -1,5 +1,6 @@
 package luky.zadanie.zadaniefinal.viewmodel
 
+import android.os.Build.VERSION_CODES.P
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,10 +16,14 @@ class NearPubViewModel(private val repository: Repository): ViewModel() {
     val status: LiveData<String>
         get() = _status
 
+    private val _check = MutableLiveData<PubNear>()
+    val check: LiveData<PubNear>
+        get() = _check
+
 
     val loading = MutableLiveData(false)
 
-    val myPub= MutableLiveData<PubNear>(null)
+    val myPub = MutableLiveData<PubNear>(null)
 
     val allNearPubs: LiveData<List<PubNear>> = repository.getNearPubRepository()
 
@@ -37,6 +42,16 @@ class NearPubViewModel(private val repository: Repository): ViewModel() {
         viewModelScope.launch {
             loading.postValue(true)
             repository.deleteNearPubRepository()
+            loading.postValue(false)
+        }
+    }
+
+    fun checkMeToPub(pubNear: PubNear){
+        viewModelScope.launch {
+            loading.postValue(true)
+            repository.apiCheckToPubRepository(pubNear,
+                { _status.postValue(it)},
+                {_check.postValue(it)})
             loading.postValue(false)
         }
     }

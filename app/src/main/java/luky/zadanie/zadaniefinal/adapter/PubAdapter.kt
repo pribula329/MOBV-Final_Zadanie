@@ -51,7 +51,7 @@ class PubAdapter (private val dataset: List<Pub>,private val myFusedLocationClie
             it?.let {
                 val dist = distanceToPub(it.latitude,it.longitude,item.lat,item.lon)
                 if (dist>1000){
-                    holder.viewDistance.text = "%.2f kilometers".format(dist)
+                    holder.viewDistance.text = "%.2f kilometers".format(dist/1000)
                 }
                 else{
                     holder.viewDistance.text = " ${dist.roundToInt()} metres"

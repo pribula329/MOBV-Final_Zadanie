@@ -111,10 +111,20 @@ class NearPubListFragment : Fragment() {
 
 
         recyclerView = binding.recyclerViewNearPub
-
         viewModel.allNearPubs.observe(viewLifecycleOwner){
-            recyclerView.adapter = NearPubAdapter(it)
+            if (viewModel.myPub.value==null && !viewModel.allNearPubs.value.isNullOrEmpty()){
+                viewModel.myPub.value = viewModel.allNearPubs.value?.get(0)
+            }
+            recyclerView.adapter = NearPubAdapter(it, viewModel)
         }
+
+        viewModel.check.observe(viewLifecycleOwner){
+            viewModel.myPub.value = it
+            println(viewModel.myPub.value?.nearId)
+            recyclerView.adapter =
+                viewModel.allNearPubs.value?.let { it1 -> NearPubAdapter(it1, viewModel) }
+        }
+
         binding.recyclerViewNearPub.layoutManager = LinearLayoutManager(this.context)
 
     }

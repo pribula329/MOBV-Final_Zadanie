@@ -12,6 +12,7 @@ import luky.zadanie.zadaniefinal.helper.setName
 import luky.zadanie.zadaniefinal.network.ApiService
 import luky.zadanie.zadaniefinal.network.UserRequestData
 import luky.zadanie.zadaniefinal.network.UserResponseData
+import luky.zadanie.zadaniefinal.network.nearPubMessageData
 import java.io.IOException
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -205,6 +206,26 @@ class Repository private constructor(
 
     suspend fun  deleteNearPubRepository(){
         pubRoomDatabase.pubDao().deletePubNearDao()
+    }
+
+    suspend fun apiCheckToPubRepository(
+        pub: PubNear,
+        onError: (error: String) -> Unit,
+        onSuccess: (success: PubNear) -> Unit
+    ) {
+        try {
+            val resp = apiService.nearPubCheckInService(nearPubMessageData(pub.nearId,pub.nearName,pub.nearType,pub.nearLat,pub.nearLon))
+            if (resp.isSuccessful) {
+                resp.body()?.let { checkPub ->
+                    onSuccess(pub)
+                }
+            } else {
+                onError("Failed check to pub, try again later.")
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            onError("Failed check to pub, try again later or check internet connection")
+        }
     }
 
 

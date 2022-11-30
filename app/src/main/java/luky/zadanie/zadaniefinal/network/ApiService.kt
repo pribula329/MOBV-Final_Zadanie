@@ -30,6 +30,9 @@ interface ApiService {
     @GET("https://overpass-api.de/api/interpreter?")
     suspend fun pubNearService(@Query("data") data: String): Response<PubNearResponse>
 
+    @POST("bar/message.php")
+    @Headers("mobv-auth: accept")
+    suspend fun nearPubCheckInService(@Body nearPub: nearPubMessageData) : Response<Any>
 
     companion object{
         const val BASE_URL = "https://zadanie.mpage.sk/"
