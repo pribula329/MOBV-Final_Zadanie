@@ -28,13 +28,26 @@
             android:id="@+id/pubCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.157"
+            app:drawableLeftCompat="@drawable/baseline_person_24"
+
             app:layout_constraintStart_toEndOf="@+id/pubImage"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="0dp"
-            app:drawableLeftCompat="@drawable/baseline_person_24" />
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/pubDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:textSize="20sp"
+            app:drawableLeftCompat="@drawable/baseline_directions_walk_24"
+
+            app:layout_constraintStart_toEndOf="@+id/pubImage"
+            app:layout_constraintTop_toBottomOf="@+id/pubCount"
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/pubImage"

@@ -7,10 +7,9 @@ import luky.zadanie.zadaniefinal.database.Pub
 import luky.zadanie.zadaniefinal.database.PubDetail
 import luky.zadanie.zadaniefinal.database.PubNear
 import luky.zadanie.zadaniefinal.database.PubRoomDatabase
-import luky.zadanie.zadaniefinal.helper.distanceToNearPub
+import luky.zadanie.zadaniefinal.helper.distanceToPub
 import luky.zadanie.zadaniefinal.helper.setName
 import luky.zadanie.zadaniefinal.network.ApiService
-import luky.zadanie.zadaniefinal.network.PubDetailData
 import luky.zadanie.zadaniefinal.network.UserRequestData
 import luky.zadanie.zadaniefinal.network.UserResponseData
 import java.io.IOException
@@ -163,7 +162,6 @@ class Repository private constructor(
         myLon: Double,
         onError: (error: String) -> Unit
     ){
-        pubRoomDatabase.pubDao().deletePubNearDao()
         try {
             val response =
                 apiService.pubNearService("[out:json];node(around:250,$myLat,$myLon);(node(around:250)[\"amenity\"~\"^pub$|^bar$|^restaurant$|^cafe$|^fast_food$|^stripclub$|^nightclub$\"];);out body;>;out skel;")
@@ -176,7 +174,7 @@ class Repository private constructor(
                             it.lon,
                             it.tagsNear.pubNearType,
                             setName(it.tagsNear.pubNearName),
-                            distanceToNearPub(myLat, myLon,it.lat,it.lon)
+                            distanceToPub(myLat, myLon,it.lat,it.lon)
                         )
                     }
 
@@ -203,6 +201,10 @@ class Repository private constructor(
         return Transformations.map(pubRoomDatabase.pubDao().getAllNearPubs().asLiveData()) {
             it
         }
+    }
+
+    suspend fun  deleteNearPubRepository(){
+        pubRoomDatabase.pubDao().deletePubNearDao()
     }
 
 

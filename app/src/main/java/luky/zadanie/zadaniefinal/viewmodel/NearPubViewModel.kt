@@ -18,15 +18,25 @@ class NearPubViewModel(private val repository: Repository): ViewModel() {
 
     val loading = MutableLiveData(false)
 
+    val myPub= MutableLiveData<PubNear>(null)
+
     val allNearPubs: LiveData<List<PubNear>> = repository.getNearPubRepository()
 
 
-    fun insertNearPubs() {
+    fun insertNearPubs(myLat: Double, myLon: Double) {
         viewModelScope.launch {
             loading.postValue(true)
-            repository.apiPubNearRepository(48.15903881955435, 17.064089396857707){
+            repository.apiPubNearRepository(myLat = myLat, myLon = myLon){
                 _status.postValue(it)
             }
+            loading.postValue(false)
+        }
+    }
+
+    fun deleteNearPubs(){
+        viewModelScope.launch {
+            loading.postValue(true)
+            repository.deleteNearPubRepository()
             loading.postValue(false)
         }
     }
