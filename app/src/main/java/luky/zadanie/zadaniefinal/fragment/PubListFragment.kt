@@ -37,6 +37,7 @@ class PubListFragment : Fragment() {
     private lateinit var myFusedLocationClient: FusedLocationProviderClient
 
     private var isSortedMenu = true
+    private var isVisibleNav = false
 
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -125,7 +126,18 @@ class PubListFragment : Fragment() {
             binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
         }
 
-        binding.floatingActionButton.setOnClickListener{
+        binding.floatingActionButton.setOnClickListener {
+            if (!isVisibleNav){
+                binding.floatingActionButtonNearPubs.visibility = View.VISIBLE
+                isVisibleNav = !isVisibleNav
+            }
+            else{
+                binding.floatingActionButtonNearPubs.visibility = View.GONE
+                isVisibleNav = !isVisibleNav
+            }
+        }
+
+        binding.floatingActionButtonNearPubs.setOnClickListener{
             val action = PubListFragmentDirections.actionPubListFragmentToNearPubListFragment()
             view.findNavController().navigate(action)
         }

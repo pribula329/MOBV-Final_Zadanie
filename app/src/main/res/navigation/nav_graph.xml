@@ -64,10 +64,17 @@
         <argument
             android:name="userCountDetail"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_pubDetailFragment_to_pubListFragment"
+            app:destination="@id/pubListFragment" />
     </fragment>
     <fragment
         android:id="@+id/nearPubListFragment"
         android:name="luky.zadanie.zadaniefinal.fragment.NearPubListFragment"
         android:label="Near pubs"
-        tools:layout="@layout/fragment_near_pub_list" />
+        tools:layout="@layout/fragment_near_pub_list" >
+        <action
+            android:id="@+id/action_nearPubListFragment_to_pubListFragment"
+            app:destination="@id/pubListFragment" />
+    </fragment>
 </navigation>

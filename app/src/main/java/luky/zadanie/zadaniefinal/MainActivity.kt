@@ -32,13 +32,10 @@ class MainActivity : AppCompatActivity() {
             arrayOf(FINE_LOCATION_PER,COARSE_LOCATION_PER,BACKGROUND_LOCATION_PER, INTERNET_PER)
         )*/
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
-        setupActionBarWithNavController(navController)
+        //navController = navHostFragment.navController
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+
 
 /*
     private fun checkPermission(permissions: Array<String>, requestCode: Array<Int>) {

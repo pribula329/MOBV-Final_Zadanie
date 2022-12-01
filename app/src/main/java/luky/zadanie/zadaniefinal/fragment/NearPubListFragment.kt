@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.CurrentLocationRequest
@@ -41,6 +42,8 @@ class NearPubListFragment : Fragment() {
     private lateinit var viewModel: NearPubViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var myFusedLocationClient: FusedLocationProviderClient
+
+    private var isVisibleNav = false
 
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -114,6 +117,7 @@ class NearPubListFragment : Fragment() {
         viewModel.allNearPubs.observe(viewLifecycleOwner){
             if (viewModel.myPub.value==null && !viewModel.allNearPubs.value.isNullOrEmpty()){
                 viewModel.myPub.value = viewModel.allNearPubs.value?.get(0)
+                viewModel.myPub.value?.let { it1 -> viewModel.checkMeToPub(it1) }
             }
             recyclerView.adapter = NearPubAdapter(it, viewModel)
         }
@@ -126,6 +130,23 @@ class NearPubListFragment : Fragment() {
         }
 
         binding.recyclerViewNearPub.layoutManager = LinearLayoutManager(this.context)
+
+
+        binding.floatingActionButton.setOnClickListener {
+            if (!isVisibleNav){
+                binding.floatingActionButtonPubs.visibility = View.VISIBLE
+                isVisibleNav = !isVisibleNav
+            }
+            else{
+                binding.floatingActionButtonPubs.visibility = View.GONE
+                isVisibleNav = !isVisibleNav
+            }
+        }
+
+        binding.floatingActionButtonPubs.setOnClickListener{
+            val action = NearPubListFragmentDirections.actionNearPubListFragmentToPubListFragment()
+            view.findNavController().navigate(action)
+        }
 
     }
 

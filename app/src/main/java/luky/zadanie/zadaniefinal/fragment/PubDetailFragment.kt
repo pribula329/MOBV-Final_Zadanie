@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
@@ -31,6 +32,8 @@ class PubDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: PubDetailViewModel
     private val args: PubDetailFragmentArgs by navArgs()
+
+    private var isVisibleNav = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,6 +120,23 @@ class PubDetailFragment : Fragment() {
             val emailUri = Uri.parse("mailto:${viewModel.pubDetail.value?.email}")
             val emailIntent = Intent(Intent.ACTION_SENDTO, emailUri)
             startActivity(emailIntent)
+        }
+
+
+        binding.floatingActionButton.setOnClickListener {
+            if (!isVisibleNav){
+                binding.floatingActionButtonPubs.visibility = View.VISIBLE
+                isVisibleNav = !isVisibleNav
+            }
+            else{
+                binding.floatingActionButtonPubs.visibility = View.GONE
+                isVisibleNav = !isVisibleNav
+            }
+        }
+
+        binding.floatingActionButtonPubs.setOnClickListener{
+            val action = PubDetailFragmentDirections.actionPubDetailFragmentToPubListFragment()
+            view.findNavController().navigate(action)
         }
 
     }

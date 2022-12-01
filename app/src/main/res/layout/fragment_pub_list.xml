@@ -21,10 +21,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:contentDescription="@string/find_near_pubs"
-            app:srcCompat="@drawable/baseline_travel_explore_24"
+            android:contentDescription="@string/find_fragment"
+            app:srcCompat="@drawable/baseline_apps_36"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button_near_pubs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="30dp"
+            android:contentDescription="@string/find_near_pubs"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/floating_action_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/baseline_travel_explore_24"
             tools:ignore="MissingConstraints" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

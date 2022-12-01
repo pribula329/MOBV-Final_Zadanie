@@ -23,4 +23,6 @@
     <string name="sortMenuByPeople">sort by people</string>
     <string name="sortMenuByDistance">Distance sort</string>
     <string name="find_near_pubs">find near pubs</string>
+    <string name="find_fragment">find fragment</string>
+    <string name="find_pubs">pubs</string>
 </resources>
