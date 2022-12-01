@@ -7,26 +7,20 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import luky.zadanie.zadaniefinal.R
 import luky.zadanie.zadaniefinal.Repository
-import luky.zadanie.zadaniefinal.adapter.PubAdapter
-import luky.zadanie.zadaniefinal.database.PubDetail
 import luky.zadanie.zadaniefinal.database.PubRoomDatabase
 import luky.zadanie.zadaniefinal.databinding.FragmentPubDetailBinding
 import luky.zadanie.zadaniefinal.helper.getIconPub
 import luky.zadanie.zadaniefinal.helper.logOut
 import luky.zadanie.zadaniefinal.network.ApiService
-import luky.zadanie.zadaniefinal.network.PubDetailData
-import luky.zadanie.zadaniefinal.viewmodel.AuthentificationViewModel
 import luky.zadanie.zadaniefinal.viewmodel.PubDetailViewModel
 
+@Suppress("DEPRECATION")
 class PubDetailFragment : Fragment() {
     private var _binding: FragmentPubDetailBinding? = null
     private val binding get() = _binding!!
@@ -126,16 +120,23 @@ class PubDetailFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             if (!isVisibleNav){
                 binding.floatingActionButtonPubs.visibility = View.VISIBLE
+                binding.floatingActionButtonAddDeleteFriends.visibility = View.VISIBLE
                 isVisibleNav = !isVisibleNav
             }
             else{
                 binding.floatingActionButtonPubs.visibility = View.GONE
+                binding.floatingActionButtonAddDeleteFriends.visibility = View.GONE
                 isVisibleNav = !isVisibleNav
             }
         }
 
         binding.floatingActionButtonPubs.setOnClickListener{
             val action = PubDetailFragmentDirections.actionPubDetailFragmentToPubListFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.floatingActionButtonAddDeleteFriends.setOnClickListener {
+            val action = PubDetailFragmentDirections.actionPubDetailFragmentToAddDeleteFriendFragment()
             view.findNavController().navigate(action)
         }
 

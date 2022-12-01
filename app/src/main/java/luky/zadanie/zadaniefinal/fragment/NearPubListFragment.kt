@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,11 +24,7 @@ import luky.zadanie.zadaniefinal.network.ApiService
 import luky.zadanie.zadaniefinal.viewmodel.NearPubViewModel
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [NearPubListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 @Suppress("DEPRECATION")
 class NearPubListFragment : Fragment() {
 
@@ -137,16 +132,22 @@ class NearPubListFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             if (!isVisibleNav){
                 binding.floatingActionButtonPubs.visibility = View.VISIBLE
+                binding.floatingActionButtonAddDeleteFriends.visibility = View.VISIBLE
                 isVisibleNav = !isVisibleNav
             }
             else{
                 binding.floatingActionButtonPubs.visibility = View.GONE
+                binding.floatingActionButtonAddDeleteFriends.visibility = View.GONE
                 isVisibleNav = !isVisibleNav
             }
         }
 
         binding.floatingActionButtonPubs.setOnClickListener{
             val action = NearPubListFragmentDirections.actionNearPubListFragmentToPubListFragment()
+            view.findNavController().navigate(action)
+        }
+        binding.floatingActionButtonAddDeleteFriends.setOnClickListener {
+            val action = NearPubListFragmentDirections.actionNearPubListFragmentToAddDeleteFriendFragment()
             view.findNavController().navigate(action)
         }
 

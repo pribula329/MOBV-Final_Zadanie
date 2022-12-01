@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
-import luky.zadanie.zadaniefinal.PreferenceData
 import luky.zadanie.zadaniefinal.R
 import luky.zadanie.zadaniefinal.Repository
 import luky.zadanie.zadaniefinal.adapter.PubAdapter
@@ -129,16 +128,23 @@ class PubListFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             if (!isVisibleNav){
                 binding.floatingActionButtonNearPubs.visibility = View.VISIBLE
+                binding.floatingActionButtonAddDeleteFriends.visibility = View.VISIBLE
                 isVisibleNav = !isVisibleNav
             }
             else{
                 binding.floatingActionButtonNearPubs.visibility = View.GONE
+                binding.floatingActionButtonAddDeleteFriends.visibility = View.GONE
                 isVisibleNav = !isVisibleNav
             }
         }
 
         binding.floatingActionButtonNearPubs.setOnClickListener{
             val action = PubListFragmentDirections.actionPubListFragmentToNearPubListFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.floatingActionButtonAddDeleteFriends.setOnClickListener {
+            val action = PubListFragmentDirections.actionPubListFragmentToAddDeleteFriendFragment()
             view.findNavController().navigate(action)
         }
 

@@ -9,10 +9,7 @@ import luky.zadanie.zadaniefinal.database.PubNear
 import luky.zadanie.zadaniefinal.database.PubRoomDatabase
 import luky.zadanie.zadaniefinal.helper.distanceToPub
 import luky.zadanie.zadaniefinal.helper.setName
-import luky.zadanie.zadaniefinal.network.ApiService
-import luky.zadanie.zadaniefinal.network.UserRequestData
-import luky.zadanie.zadaniefinal.network.UserResponseData
-import luky.zadanie.zadaniefinal.network.NearPubMessageData
+import luky.zadanie.zadaniefinal.network.*
 import java.io.IOException
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -164,8 +161,7 @@ class Repository private constructor(
         onError: (error: String) -> Unit
     ){
         try {
-            val response =
-                apiService.pubNearService("[out:json];node(around:250,$myLat,$myLon);(node(around:250)[\"amenity\"~\"^pub$|^bar$|^restaurant$|^cafe$|^fast_food$|^stripclub$|^nightclub$\"];);out body;>;out skel;")
+            val response = apiService.pubNearService("[out:json];node(around:250,$myLat,$myLon);(node(around:250)[\"amenity\"~\"^pub$|^bar$|^restaurant$|^cafe$|^fast_food$|^stripclub$|^nightclub$\"];);out body;>;out skel;")
             if (response.isSuccessful) {
                 response.body()?.let { nearPubs ->
                     var nearPubsList: List<PubNear> = nearPubs.elements.map {
@@ -214,9 +210,9 @@ class Repository private constructor(
         onSuccess: (success: PubNear) -> Unit
     ) {
         try {
-            val resp = apiService.nearPubCheckInOutService(NearPubMessageData(pub.nearId,pub.nearName,pub.nearType,pub.nearLat,pub.nearLon))
-            if (resp.isSuccessful) {
-                resp.body()?.let { checkPub ->
+            val response = apiService.nearPubCheckInOutService(NearPubMessageData(pub.nearId,pub.nearName,pub.nearType,pub.nearLat,pub.nearLon))
+            if (response.isSuccessful) {
+                response.body()?.let { checkPub ->
                     onSuccess(pub)
                 }
             } else {
@@ -229,11 +225,50 @@ class Repository private constructor(
     }
 
 
+    suspend fun apiAddFriendRepository(
+        friendName: String,
+        onError: (error: String) -> Unit,
+        onSuccess: (success: String) -> Unit
+    ) {
+        try {
+            val response = apiService.addFriendService(AddDeleteFriendData(friendName))
+
+            if (response.isSuccessful) {
+                onSuccess("Great you have new friend")
+
+            } else {
+                onError("Failed to add friend.")
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            onError("Failed to add friend, try it again later or check internet connection")
+        }
+    }
+
+    suspend fun apiGetFriendRepository(
+        onError: (error: String) -> Unit
+    ) {
+        try {
+            val response = apiService.getFriendService()
+            if (response.isSuccessful) {
+                onError("Great you have get friends")
+
+            } else {
+                onError("Failed to get friends.")
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            onError("Failed to get friend, try it again later or check internet connection")
+        }
+    }
+
+
+
     private fun hashUserData(password: String): String {
         var digest = ""
         try {
-            val crypt = MessageDigest.getInstance("MD5");
-            crypt.update(password.toByteArray());
+            val crypt = MessageDigest.getInstance("MD5")
+            crypt.update(password.toByteArray())
             digest = BigInteger(1, crypt.digest()).toString(16)
 
 

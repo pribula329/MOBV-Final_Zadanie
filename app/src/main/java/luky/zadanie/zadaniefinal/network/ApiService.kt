@@ -33,6 +33,14 @@ interface ApiService {
     @Headers("mobv-auth: accept")
     suspend fun nearPubCheckInOutService(@Body nearPub: NearPubMessageData) : Response<Any>
 
+    @POST("contact/message.php")
+    @Headers("mobv-auth: accept")
+    suspend fun addFriendService(@Body addFriend: AddDeleteFriendData) : Response<Void>
+
+    @GET("contact/friends.php")
+    @Headers("mobv-auth: accept")
+    suspend fun getFriendService() : Response<Any>
+
     companion object{
         const val BASE_URL = "https://zadanie.mpage.sk/"
 

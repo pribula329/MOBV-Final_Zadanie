@@ -25,4 +25,7 @@
     <string name="find_near_pubs">find near pubs</string>
     <string name="find_fragment">find fragment</string>
     <string name="find_pubs">pubs</string>
+    <string name="manage_friends">manage friends</string>
+    <string name="friendName">Friend name</string>
+    <string name="addFriend">Add friend</string>
 </resources>

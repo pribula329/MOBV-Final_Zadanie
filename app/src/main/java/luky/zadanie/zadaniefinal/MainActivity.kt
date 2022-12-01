@@ -1,17 +1,11 @@
 package luky.zadanie.zadaniefinal
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import luky.zadanie.zadaniefinal.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +26,8 @@ class MainActivity : AppCompatActivity() {
             arrayOf(FINE_LOCATION_PER,COARSE_LOCATION_PER,BACKGROUND_LOCATION_PER, INTERNET_PER)
         )*/
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        //navController = navHostFragment.navController
+        navController = navHostFragment.navController
+        setupActionBarWithNavController(navController)
     }
 
 

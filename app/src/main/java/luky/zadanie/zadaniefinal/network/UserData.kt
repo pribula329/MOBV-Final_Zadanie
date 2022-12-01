@@ -14,3 +14,7 @@ data class UserResponseData(
     val access: String,
     val refresh: String
 )
+
+data class AddDeleteFriendData(
+    val contact: String
+)
