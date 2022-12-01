@@ -12,7 +12,7 @@ import luky.zadanie.zadaniefinal.helper.setName
 import luky.zadanie.zadaniefinal.network.ApiService
 import luky.zadanie.zadaniefinal.network.UserRequestData
 import luky.zadanie.zadaniefinal.network.UserResponseData
-import luky.zadanie.zadaniefinal.network.nearPubMessageData
+import luky.zadanie.zadaniefinal.network.NearPubMessageData
 import java.io.IOException
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -214,7 +214,7 @@ class Repository private constructor(
         onSuccess: (success: PubNear) -> Unit
     ) {
         try {
-            val resp = apiService.nearPubCheckInService(nearPubMessageData(pub.nearId,pub.nearName,pub.nearType,pub.nearLat,pub.nearLon))
+            val resp = apiService.nearPubCheckInOutService(NearPubMessageData(pub.nearId,pub.nearName,pub.nearType,pub.nearLat,pub.nearLon))
             if (resp.isSuccessful) {
                 resp.body()?.let { checkPub ->
                     onSuccess(pub)

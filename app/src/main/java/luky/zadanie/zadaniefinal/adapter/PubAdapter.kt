@@ -42,6 +42,7 @@ class PubAdapter (private val dataset: List<Pub>,private val myFusedLocationClie
     @SuppressLint("MissingPermission", "SetTextI18n")
     override fun onBindViewHolder(holder: PubViewHolder, position: Int) {
         val myTask = myFusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY,null)
+
         val item = dataset[position]
         holder.viewPub.text = item.pubName
         holder.viewCount.text= " ${item.usersCount.toString()} "
@@ -49,6 +50,7 @@ class PubAdapter (private val dataset: List<Pub>,private val myFusedLocationClie
 
         myTask.addOnSuccessListener{
             it?.let {
+                println("Aktualna poloha: ${myTask.result.longitude}, ${myTask.result.latitude}")
                 val dist = distanceToPub(it.latitude,it.longitude,item.lat,item.lon)
                 if (dist>1000){
                     holder.viewDistance.text = "%.2f kilometers".format(dist/1000)

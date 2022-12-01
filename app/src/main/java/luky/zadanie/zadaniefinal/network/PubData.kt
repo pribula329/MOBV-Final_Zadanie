@@ -55,7 +55,7 @@ data class PubNearResponse(
     val elements: List<PubNearData>
 )
 
-data class nearPubMessageData(
+data class NearPubMessageData(
     val id: String,
     val name: String,
     val type: String,

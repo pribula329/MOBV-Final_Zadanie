@@ -1,7 +1,6 @@
 package luky.zadanie.zadaniefinal.network
 
 import android.content.Context
-import luky.zadanie.zadaniefinal.database.PubNear
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
@@ -32,7 +31,7 @@ interface ApiService {
 
     @POST("bar/message.php")
     @Headers("mobv-auth: accept")
-    suspend fun nearPubCheckInService(@Body nearPub: nearPubMessageData) : Response<Any>
+    suspend fun nearPubCheckInOutService(@Body nearPub: NearPubMessageData) : Response<Any>
 
     companion object{
         const val BASE_URL = "https://zadanie.mpage.sk/"
