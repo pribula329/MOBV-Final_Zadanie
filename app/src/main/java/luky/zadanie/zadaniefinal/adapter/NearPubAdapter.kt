@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.card.MaterialCardView
 import luky.zadanie.zadaniefinal.R
 import luky.zadanie.zadaniefinal.database.Pub
@@ -27,6 +28,7 @@ class NearPubAdapter (private val dataset: List<PubNear>, private val model: Nea
         val viewDistance: TextView = view.findViewById(R.id.pubNearDistance)
         val viewImage: ImageView = view.findViewById(R.id.pubNearImage)
         val viewCard: MaterialCardView = view.findViewById(R.id.pubNearCard)
+        val viewCheckIn: LottieAnimationView = view.findViewById(R.id.animationCheckView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NearPubViewHolder {
@@ -48,7 +50,7 @@ class NearPubAdapter (private val dataset: List<PubNear>, private val model: Nea
             println(item.nearName)
         }
 
-        holder.viewCard.setOnClickListener {
+        holder.viewCheckIn.setOnClickListener {
 
             model.checkMeToPub(item)
 

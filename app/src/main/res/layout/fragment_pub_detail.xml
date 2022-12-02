@@ -187,6 +187,19 @@
             tools:ignore="MissingConstraints" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button_near_pubs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="30dp"
+            android:contentDescription="@string/find_near_pubs"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/floating_action_button_pubs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/baseline_travel_explore_24"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_action_button_add_delete_friends"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -194,9 +207,22 @@
             android:layout_marginBottom="30dp"
             android:contentDescription="@string/manage_friends"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/floating_action_button_pubs"
+            app:layout_constraintBottom_toTopOf="@id/floating_action_button_near_pubs"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/baseline_manage_accounts_24"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="30dp"
+            android:contentDescription="@string/find_friend"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/floating_action_button_add_delete_friends"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/baseline_person_search_24"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

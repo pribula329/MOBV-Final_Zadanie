@@ -29,4 +29,5 @@
     <string name="friendName">Friend name</string>
     <string name="addFriend">Add friend</string>
     <string name="deleteFriend">Delete friend</string>
+    <string name="find_friend">find friend</string>
 </resources>

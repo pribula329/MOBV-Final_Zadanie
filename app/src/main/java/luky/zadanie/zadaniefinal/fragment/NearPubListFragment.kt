@@ -133,11 +133,13 @@ class NearPubListFragment : Fragment() {
             if (!isVisibleNav){
                 binding.floatingActionButtonPubs.visibility = View.VISIBLE
                 binding.floatingActionButtonAddDeleteFriends.visibility = View.VISIBLE
+                binding.floatingActionButtonFriend.visibility =View.VISIBLE
                 isVisibleNav = !isVisibleNav
             }
             else{
                 binding.floatingActionButtonPubs.visibility = View.GONE
                 binding.floatingActionButtonAddDeleteFriends.visibility = View.GONE
+                binding.floatingActionButtonFriend.visibility =View.GONE
                 isVisibleNav = !isVisibleNav
             }
         }
@@ -148,6 +150,11 @@ class NearPubListFragment : Fragment() {
         }
         binding.floatingActionButtonAddDeleteFriends.setOnClickListener {
             val action = NearPubListFragmentDirections.actionNearPubListFragmentToAddDeleteFriendFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.floatingActionButtonFriend.setOnClickListener {
+            val action = NearPubListFragmentDirections.actionNearPubListFragmentToFriendFragment()
             view.findNavController().navigate(action)
         }
 

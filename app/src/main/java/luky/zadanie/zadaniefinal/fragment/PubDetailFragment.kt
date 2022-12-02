@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
@@ -121,11 +122,15 @@ class PubDetailFragment : Fragment() {
             if (!isVisibleNav){
                 binding.floatingActionButtonPubs.visibility = View.VISIBLE
                 binding.floatingActionButtonAddDeleteFriends.visibility = View.VISIBLE
+                binding.floatingActionButtonNearPubs.visibility = View.VISIBLE
+                binding.floatingActionButtonFriend.visibility = View.VISIBLE
                 isVisibleNav = !isVisibleNav
             }
             else{
                 binding.floatingActionButtonPubs.visibility = View.GONE
                 binding.floatingActionButtonAddDeleteFriends.visibility = View.GONE
+                binding.floatingActionButtonNearPubs.visibility = View.GONE
+                binding.floatingActionButtonFriend.visibility = View.GONE
                 isVisibleNav = !isVisibleNav
             }
         }
@@ -137,6 +142,15 @@ class PubDetailFragment : Fragment() {
 
         binding.floatingActionButtonAddDeleteFriends.setOnClickListener {
             val action = PubDetailFragmentDirections.actionPubDetailFragmentToAddDeleteFriendFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.floatingActionButtonFriend.setOnClickListener {
+            val action = PubDetailFragmentDirections.actionPubDetailFragmentToFriendFragment()
+            view.findNavController().navigate(action)
+        }
+        binding.floatingActionButtonNearPubs.setOnClickListener {
+            val action = PubDetailFragmentDirections.actionPubDetailFragmentToNearPubListFragment()
             view.findNavController().navigate(action)
         }
 

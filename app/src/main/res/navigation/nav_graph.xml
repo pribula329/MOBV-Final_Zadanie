@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_pubListFragment_to_addDeleteFriendFragment"
             app:destination="@id/addDeleteFriendFragment" />
+        <action
+            android:id="@+id/action_pubListFragment_to_friendFragment"
+            app:destination="@id/friendFragment" />
     </fragment>
     <fragment
         android:id="@+id/pubDetailFragment"
@@ -73,6 +76,12 @@
         <action
             android:id="@+id/action_pubDetailFragment_to_addDeleteFriendFragment"
             app:destination="@id/addDeleteFriendFragment" />
+        <action
+            android:id="@+id/action_pubDetailFragment_to_friendFragment"
+            app:destination="@id/friendFragment" />
+        <action
+            android:id="@+id/action_pubDetailFragment_to_nearPubListFragment"
+            app:destination="@id/nearPubListFragment" />
     </fragment>
     <fragment
         android:id="@+id/nearPubListFragment"
@@ -85,6 +94,9 @@
         <action
             android:id="@+id/action_nearPubListFragment_to_addDeleteFriendFragment"
             app:destination="@id/addDeleteFriendFragment" />
+        <action
+            android:id="@+id/action_nearPubListFragment_to_friendFragment"
+            app:destination="@id/friendFragment" />
     </fragment>
     <fragment
         android:id="@+id/addDeleteFriendFragment"
@@ -97,5 +109,23 @@
         <action
             android:id="@+id/action_addDeleteFriendFragment_to_nearPubListFragment"
             app:destination="@id/nearPubListFragment" />
+        <action
+            android:id="@+id/action_addDeleteFriendFragment_to_friendFragment"
+            app:destination="@id/friendFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendFragment"
+        android:name="luky.zadanie.zadaniefinal.fragment.FriendFragment"
+        android:label="fragment_friend"
+        tools:layout="@layout/fragment_friend" >
+        <action
+            android:id="@+id/action_friendFragment_to_addDeleteFriendFragment"
+            app:destination="@id/addDeleteFriendFragment" />
+        <action
+            android:id="@+id/action_friendFragment_to_nearPubListFragment"
+            app:destination="@id/nearPubListFragment" />
+        <action
+            android:id="@+id/action_friendFragment_to_pubListFragment"
+            app:destination="@id/pubListFragment" />
     </fragment>
 </navigation>

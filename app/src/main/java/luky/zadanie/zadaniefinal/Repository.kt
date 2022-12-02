@@ -295,6 +295,45 @@ class Repository private constructor(
         }
     }
 
+
+    suspend fun apiFriendWithPubRepository(
+        onError: (error: String) -> Unit,
+        onStatus: (success: List<FriendWithPubData>?) -> Unit,
+        onSuccess: (success: String) -> Unit
+
+    ){
+        var friendWithPubList = listOf<FriendWithPubData>()
+        try {
+            val response = apiService.friendWithPubListService()
+            if (response.isSuccessful) {
+                response.body()?.let { friendWithPub ->
+                    friendWithPubList = friendWithPub.toList().map {
+                        FriendWithPubData(
+                            it.idFriend,
+                            it.nameFriend,
+                            it.idPubFriend,
+                            it.namePubFriend,
+                            it.latPubFriend,
+                            it.lonPubFriend
+                        )
+                    }
+
+                    onStatus(friendWithPubList)
+                }
+
+            }
+            else {
+                onError("Failed to get friends with pubs.")
+                onStatus(null)
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            onError("Failed to get friend, try it again later or check internet connection")
+            onStatus(null)
+        }
+    }
+
+
     private fun hashUserData(password: String): String {
         var digest = ""
         try {

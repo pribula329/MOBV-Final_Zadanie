@@ -19,6 +19,7 @@ import luky.zadanie.zadaniefinal.viewmodel.AddDeleteFriendViewModel
 import luky.zadanie.zadaniefinal.viewmodel.PubViewModel
 
 
+@Suppress("DEPRECATION")
 class AddDeleteFriendFragment : Fragment() {
 
     private var _binding: FragmentAddDeleteFriendBinding? = null
@@ -99,11 +100,13 @@ class AddDeleteFriendFragment : Fragment() {
             if (!isVisibleNav){
                 binding.floatingActionButtonPubs.visibility = View.VISIBLE
                 binding.floatingActionButtonNearPubs.visibility = View.VISIBLE
+                binding.floatingActionButtonFriend.visibility = View.VISIBLE
                 isVisibleNav = !isVisibleNav
             }
             else{
                 binding.floatingActionButtonPubs.visibility = View.GONE
                 binding.floatingActionButtonNearPubs.visibility = View.GONE
+                binding.floatingActionButtonFriend.visibility = View.GONE
                 isVisibleNav = !isVisibleNav
             }
         }
@@ -115,6 +118,11 @@ class AddDeleteFriendFragment : Fragment() {
 
         binding.floatingActionButtonNearPubs.setOnClickListener {
             val action = AddDeleteFriendFragmentDirections.actionAddDeleteFriendFragmentToNearPubListFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.floatingActionButtonFriend.setOnClickListener {
+            val action = AddDeleteFriendFragmentDirections.actionAddDeleteFriendFragmentToFriendFragment()
             view.findNavController().navigate(action)
         }
 

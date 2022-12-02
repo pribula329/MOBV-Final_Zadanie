@@ -27,3 +27,18 @@ data class FriendData(
     @SerializedName("user_name")
     val nameFriend: String
 )
+
+data class FriendWithPubData(
+    @SerializedName("user_id")
+    val idFriend: String,
+    @SerializedName("user_name")
+    val nameFriend: String,
+    @SerializedName("bar_id")
+    val idPubFriend: String?,
+    @SerializedName("bar_name")
+    val namePubFriend: String?,
+    @SerializedName("bar_lat")
+    val latPubFriend: String?,
+    @SerializedName("bar_lon")
+    val lonPubFriend: String?,
+)

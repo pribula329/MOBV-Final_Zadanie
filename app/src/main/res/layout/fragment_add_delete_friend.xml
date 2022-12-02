@@ -52,6 +52,21 @@
             app:srcCompat="@drawable/baseline_store_24"
             tools:ignore="MissingConstraints" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="30dp"
+            android:contentDescription="@string/find_friend"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/floating_action_button_pubs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/baseline_person_search_24"
+            tools:ignore="MissingConstraints" />
+
+
+
         <!-- TODO: Update blank fragment layout -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/friendName"
