@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "near_pub")
-class PubNear(
+data class PubNear(
     @PrimaryKey
     val nearId: String,
     @ColumnInfo(name = "near_lat")

@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import luky.zadanie.zadaniefinal.R
 import luky.zadanie.zadaniefinal.Repository
+import luky.zadanie.zadaniefinal.adapter.AddDeleteFriendAdapter
 import luky.zadanie.zadaniefinal.database.PubRoomDatabase
 import luky.zadanie.zadaniefinal.databinding.FragmentAddDeleteFriendBinding
 import luky.zadanie.zadaniefinal.databinding.FragmentPubDetailBinding
@@ -22,6 +24,7 @@ class AddDeleteFriendFragment : Fragment() {
     private var _binding: FragmentAddDeleteFriendBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: AddDeleteFriendViewModel
+    private lateinit var recyclerView: RecyclerView
 
     private var isVisibleNav = false
 
@@ -48,7 +51,12 @@ class AddDeleteFriendFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getFriend()
+
+        recyclerView = binding.recyclerViewAddDelete
+
         viewModel.statusSucces.observe(viewLifecycleOwner){
+
             Snackbar.make(
                 binding.root.rootView,
                 it.toString(),
@@ -66,6 +74,12 @@ class AddDeleteFriendFragment : Fragment() {
 
         }
 
+        viewModel.friends.observe(viewLifecycleOwner){ it1 ->
+            if (it1!=null){
+                recyclerView.adapter = AddDeleteFriendAdapter(it1,viewModel)
+            }
+
+        }
 
         binding.addFriendButton.setOnClickListener{
             if (binding.friendNameInput.text.isNullOrBlank()){
@@ -77,14 +91,9 @@ class AddDeleteFriendFragment : Fragment() {
             }
             else{
                 viewModel.addFriend(binding.friendNameInput.text.toString())
+                viewModel.getFriend()
             }
         }
-
-        binding.showFriendButton.setOnClickListener {
-            viewModel.getFriend()
-        }
-
-
 
         binding.floatingActionButton.setOnClickListener {
             if (!isVisibleNav){

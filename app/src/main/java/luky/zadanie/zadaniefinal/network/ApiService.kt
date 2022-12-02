@@ -39,7 +39,11 @@ interface ApiService {
 
     @GET("contact/friends.php")
     @Headers("mobv-auth: accept")
-    suspend fun getFriendService() : Response<Any>
+    suspend fun getFriendService() : Response<Array<FriendData>>
+
+    @POST("contact/delete.php")
+    @Headers("mobv-auth: accept")
+    suspend fun deleteFriendService(@Body addFriend: AddDeleteFriendData) : Response<Void>
 
     companion object{
         const val BASE_URL = "https://zadanie.mpage.sk/"

@@ -28,4 +28,5 @@
     <string name="manage_friends">manage friends</string>
     <string name="friendName">Friend name</string>
     <string name="addFriend">Add friend</string>
+    <string name="deleteFriend">Delete friend</string>
 </resources>

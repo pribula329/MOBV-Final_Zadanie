@@ -19,7 +19,7 @@ import luky.zadanie.zadaniefinal.helper.getIconPub
 import luky.zadanie.zadaniefinal.viewmodel.NearPubViewModel
 import kotlin.math.roundToInt
 
-class NearPubAdapter (private val dataset: List<PubNear>, val model: NearPubViewModel): RecyclerView.Adapter<NearPubAdapter.NearPubViewHolder>() {
+class NearPubAdapter (private val dataset: List<PubNear>, private val model: NearPubViewModel): RecyclerView.Adapter<NearPubAdapter.NearPubViewHolder>() {
 
     //class for ViewHolder
     class NearPubViewHolder(val view: View) : RecyclerView.ViewHolder(view) {

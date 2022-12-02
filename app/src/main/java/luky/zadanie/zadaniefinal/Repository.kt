@@ -234,8 +234,7 @@ class Repository private constructor(
             val response = apiService.addFriendService(AddDeleteFriendData(friendName))
 
             if (response.isSuccessful) {
-                onSuccess("Great you have new friend")
-
+                    onSuccess("Great you have new friend")
             } else {
                 onError("Failed to add friend.")
             }
@@ -246,23 +245,55 @@ class Repository private constructor(
     }
 
     suspend fun apiGetFriendRepository(
-        onError: (error: String) -> Unit
-    ) {
+        onError: (error: String) -> Unit,
+        onStatus: (success: List<FriendData>?) -> Unit,
+        onSuccess: (success: String) -> Unit
+
+    ){
+        var friendList = listOf<FriendData>()
         try {
             val response = apiService.getFriendService()
             if (response.isSuccessful) {
-                onError("Great you have get friends")
+                response.body()?.let { friends ->
+                    friendList = friends.toList().map {
+                        FriendData(
+                            it.idFriend,
+                            it.nameFriend
+                        )
+                    }
 
+                    onStatus(friendList)
+
+                }
             } else {
                 onError("Failed to get friends.")
+                onStatus(null)
             }
         } catch (ex: Exception) {
             ex.printStackTrace()
             onError("Failed to get friend, try it again later or check internet connection")
+            onStatus(null)
         }
     }
 
+    suspend fun apiDeleteFriendRepository(
+        friendName: String,
+        onError: (error: String) -> Unit,
+        onSuccess: (success: String) -> Unit
+    ) {
+        try {
+            val response = apiService.deleteFriendService(AddDeleteFriendData(friendName))
 
+            if (response.isSuccessful) {
+                onSuccess("Great you delete your friend")
+            } else {
+                onError("Failed to delete friend.")
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            onError("Failed to delete friend, try it again later or check internet connection")
+        }
+    }
 
     private fun hashUserData(password: String): String {
         var digest = ""

@@ -40,4 +40,8 @@ interface PubDao {
 
     @Query("SELECT * from near_pub;")
     fun getAllNearPubs(): Flow<List<PubNear>>
+
+
+
+
 }

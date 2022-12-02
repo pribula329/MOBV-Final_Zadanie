@@ -83,15 +83,17 @@
             app:layout_constraintTop_toBottomOf="@+id/friendName"
             tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/showFriendButton"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewAddDelete"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="get"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/add_delete_item"
+            app:spanCount="2"
             app:layout_constraintTop_toBottomOf="@+id/addFriendButton"
-            tools:ignore="MissingConstraints" />
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
