@@ -21,6 +21,9 @@ interface PubDao {
     @Query("SELECT * from pub;")
     fun getAllPubs(): Flow<List<Pub>>
 
+    @Query("SELECT * from pub WHERE pubId = :idPub")
+    fun getPub(idPub: String): Flow<Pub>
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPubDetailDao(pubDetail: PubDetail)

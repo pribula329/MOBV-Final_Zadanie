@@ -3,6 +3,7 @@ package luky.zadanie.zadaniefinal.fragment
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -23,6 +24,8 @@ class FriendFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: FriendViewModel
     private lateinit var recyclerView: RecyclerView
+
+    private var isVisibleNav = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,10 +75,43 @@ class FriendFragment : Fragment() {
         viewModel.friendsWithPub.observe(viewLifecycleOwner){ it1 ->
             println(it1)
             if (it1!=null){
-                recyclerView.adapter = FriendAdapter(it1,viewModel)
+                recyclerView.adapter = FriendAdapter(it1)
             }
 
         }
+
+        binding.floatingActionButton.setOnClickListener {
+            if (!isVisibleNav){
+                binding.floatingActionButtonPubs.visibility = View.VISIBLE
+                binding.floatingActionButtonAddDeleteFriends.visibility = View.VISIBLE
+                binding.floatingActionButtonNearPubs.visibility =View.VISIBLE
+                isVisibleNav = !isVisibleNav
+            }
+            else{
+                binding.floatingActionButtonPubs.visibility = View.GONE
+                binding.floatingActionButtonAddDeleteFriends.visibility = View.GONE
+                binding.floatingActionButtonNearPubs.visibility =View.GONE
+                isVisibleNav = !isVisibleNav
+            }
+        }
+
+        binding.floatingActionButtonNearPubs.setOnClickListener {
+            val action = FriendFragmentDirections.actionFriendFragmentToNearPubListFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.floatingActionButtonPubs.setOnClickListener {
+            val action = FriendFragmentDirections.actionFriendFragmentToPubListFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.floatingActionButtonAddDeleteFriends.setOnClickListener {
+            val action = FriendFragmentDirections.actionFriendFragmentToAddDeleteFriendFragment()
+            view.findNavController().navigate(action)
+        }
+
+
+
     }
 
 

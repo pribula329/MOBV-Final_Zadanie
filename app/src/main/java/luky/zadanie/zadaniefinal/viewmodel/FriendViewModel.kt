@@ -1,12 +1,8 @@
 package luky.zadanie.zadaniefinal.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import luky.zadanie.zadaniefinal.Repository
-import luky.zadanie.zadaniefinal.network.FriendData
 import luky.zadanie.zadaniefinal.network.FriendWithPubData
 
 class FriendViewModel(private val repository: Repository): ViewModel() {

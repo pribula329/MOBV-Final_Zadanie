@@ -116,8 +116,8 @@
     <fragment
         android:id="@+id/friendFragment"
         android:name="luky.zadanie.zadaniefinal.fragment.FriendFragment"
-        android:label="fragment_friend"
-        tools:layout="@layout/fragment_friend" >
+        android:label="Where are friend"
+        tools:layout="@layout/fragment_friend">
         <action
             android:id="@+id/action_friendFragment_to_addDeleteFriendFragment"
             app:destination="@id/addDeleteFriendFragment" />
@@ -127,5 +127,8 @@
         <action
             android:id="@+id/action_friendFragment_to_pubListFragment"
             app:destination="@id/pubListFragment" />
+        <action
+            android:id="@+id/action_friendFragment_to_pubDetailFragment"
+            app:destination="@id/pubDetailFragment" />
     </fragment>
 </navigation>

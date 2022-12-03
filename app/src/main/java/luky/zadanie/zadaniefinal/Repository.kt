@@ -3,6 +3,7 @@ package luky.zadanie.zadaniefinal
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.asLiveData
+import kotlinx.coroutines.flow.Flow
 import luky.zadanie.zadaniefinal.database.Pub
 import luky.zadanie.zadaniefinal.database.PubDetail
 import luky.zadanie.zadaniefinal.database.PubNear
@@ -332,6 +333,7 @@ class Repository private constructor(
             onStatus(null)
         }
     }
+
 
 
     private fun hashUserData(password: String): String {
