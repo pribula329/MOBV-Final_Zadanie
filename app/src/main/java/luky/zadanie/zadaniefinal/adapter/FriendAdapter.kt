@@ -47,7 +47,7 @@ class FriendAdapter(private val dataset: List<FriendWithPubData>): RecyclerView.
                     "",
                     item.latPubFriend!!.toFloat(),
                     item.lonPubFriend!!.toFloat(),
-                    1
+                    -1
                 )
                 holder.view.findNavController().navigate(action)
             }

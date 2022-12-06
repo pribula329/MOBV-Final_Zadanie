@@ -162,7 +162,13 @@ class PubDetailFragment : Fragment() {
             pubNameView.text = args.pubNameDetail
             pubTypeView.setImageResource(getIconPub(args.pubTypeDetail))
             pubTypeTextView.text = args.pubTypeDetail
-            pubCount.text = "People in pub: ${args.userCountDetail}"
+            if(args.userCountDetail<0){
+                pubCount.text = "People in pub: -"
+            }
+            else{
+                pubCount.text = "People in pub: ${args.userCountDetail}"
+            }
+
 
         }
 
